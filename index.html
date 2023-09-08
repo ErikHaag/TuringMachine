@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>TCS</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body style="justify-content: center;">
+    <div>
+        <table>
+            <tr>
+                <td><button id="reset">Reset and Compile</button></td>
+                <td><button id="step">Step</button></td>
+                <td><p id="stateDisp">State: </p></td>
+            </tr>
+        </table>
+        <p id="tape" style="width: 800px; background-color: white; font-family: courier;">»_«</p>
+        <textarea id="program" wrap="off" spellcheck="false"
+            style="width: 800px; height: 400px; resize: none; border: thick solid darkmagenta;"></textarea>
+        <p>This is based on <a href="https://morphett.info/turing/turing.html" target="_blank">this turing machine
+                simulator</a>. It is a rewrite using my programming style.</p>
+        <h2>Setup</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Initial State</td>
+                    <td><input type="text" id="initState" style="border: thick solid darkmagenta;"></td>
+                </tr>
+                <tr>
+                    <td>Initial Tape and Head Position</td>
+                    <td><input type="text" placeholder="][1 0 1 1 + 1 0 1" id="initTape"
+                            style="border: thick solid darkmagenta;"> </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul>
+            <li>use space-sepreated values with <b
+                    title="As cool as two or more turing machine heads on the same tape would be, let's keep it sane with one.">one</b>
+                value prefixed with "][" to place the head</0li>
+            <li>the symbol "???" is reserved for wildcard, using it will give undesired results</li>
+        </ul>
+        <h2>Language</h2>
+        <ul>
+            <li>The commands are in the order of &lt;current state&gt; &lt;current symbol&gt; &lt;new symbol&gt;
+                &lt;direction&gt; &lt;new state&gt;</li>
+            <li>States can be any string, excluding those that start with semicolons.</li>
+            <li>Symbols can be any string excluding those that start with "][".</li>
+            <li>When &lt;current symbol&gt; is the symbol "???", it behaves like a wildcard.</li>
+            <li>&lt;direction&gt; can be "l", "h", "r", "il", or "ir" for left, hold, right, insert left, and insert
+                right
+                respectively.</li>
+            <li>"???" can be used in &lt;new symbol&gt; to prevent the machine from writting.<br> In this state, "il" and
+                "ir" are replaced with "dl" and "dr" for deleting</li>
+            <li>If a line starts with a semicolon, then the line is a comment.</li>
+            <li>Any text after a command is ignored and therefor is also a comment.</li>
+            <li>If two or more lines start with the same state and symbol, then the last one will be used.</li>
+        </ul>
+    </div>
+    <div>
+        <a id="downloadAnchorElem" style="display:none"></a>
+        <button id = "save">Save</button><br>
+        <input id="file" type="file" accept=".json">
+        <button id="load">Load</button>
+    </div>
+</body>
+<script src='main.js'></script>
+</html>

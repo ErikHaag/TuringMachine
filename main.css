@@ -1,0 +1,22 @@
+@keyframes flash {
+    0% {
+        border-color: darkmagenta;
+    }
+    1% {
+        border-color: red;
+    }
+    100% {
+        border-color: darkmagenta;
+    }
+}
+
+body {
+    background-color: slategray;
+    color: black;
+    display: flex;
+    font-size: large;
+}
+
+.error {
+    animation: 3s linear 1s infinite running flash;
+}
